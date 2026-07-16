@@ -1,0 +1,42 @@
+services:
+  # The Next.js birthday experience (standalone Node server on :3000)
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ebony-birthday:latest
+    container_name: ebony-birthday
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+    expose:
+      - "3000"
+    # Expose directly on the host if you are NOT using the nginx proxy below.
+    # Comment this out when running behind nginx/Traefik.
+    ports:
+      - "3000:3000"
+    networks:
+      - ebony
+
+  # Optional hardened reverse proxy. Enable with:  docker compose --profile proxy up -d
+  # It terminates HTTP(S) and forwards to `web`. Drop your certs in ./nginx/certs.
+  proxy:
+    image: nginx:1.27-alpine
+    container_name: ebony-proxy
+    restart: unless-stopped
+    depends_on:
+      - web
+    profiles: ["proxy"]
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    networks:
+      - ebony
+
+networks:
+  ebony:
+    driver: bridge
