@@ -29,14 +29,25 @@ export const site = {
 
 /** The letter that unfolds from the envelope. ✏️ Make this yours. */
 export const loveLetter = {
-  greeting: "My beautiful queen,",
+  greeting: "My Beautiful Queen,",
   body: [
-    "Today the world celebrates the day God blessed it with someone truly special. Your kindness, your strength, your beautiful smile and your loving heart make every ordinary day feel brighter.",
-    "An ocean and thousands of miles sit between Addis Ababa and Cleveland, but none of it has ever reached the place where I keep you. Distance is measured on a map — never in the heart.",
-    "I pray this new year of your life overflows with peace, joy, healing, favor and endless blessings.",
+    "Today isn't just another date on the calendar.",
+    "Today is the day the world was blessed with someone truly extraordinary.",
+    "A woman whose kindness comforts others, whose strength inspires, whose smile brightens even the darkest days, and whose heart carries warmth wherever she goes.",
+    "I'm incredibly grateful that our paths crossed, because knowing you has been one of the most meaningful gifts life has given me.",
+    "Although an ocean and thousands of miles separate Addis Ababa and Cleveland, I have never believed that distance has the power to diminish what is genuine. Maps can measure miles, clocks can measure time, but neither can measure appreciation, prayers, or the place someone holds in another person's heart.",
+    "Whenever I look at the night sky, I smile knowing that the same moon shines over both of us. Different countries. Different time zones. The same sky above us.",
+    "On your birthday, my greatest wish is that this new chapter of your life is filled with God's peace, overflowing joy, renewed strength, good health, wisdom for every decision, and countless moments that remind you just how valuable you are.",
+    "May every dream placed in your heart grow closer to becoming reality. May every challenge become a testimony of your resilience. May every step you take be guided with grace, favor, and purpose.",
+    "Thank you for being exactly who you are.",
+    "Thank you for every conversation, every laugh, every encouraging word, and every moment we've shared.",
+    "You have brought light into my life in ways you may never fully realize, and for that, I will always be grateful.",
+    "So today, smile a little bigger. Laugh a little louder. Celebrate the incredible woman you are.",
+    "Because today isn't only your birthday — today, we celebrate you.",
   ],
-  closing: "Happy Birthday. I love you.",
-  signature: "Nebyu",
+  closing: "Happy Birthday, Ebony. May this year become your most beautiful chapter yet.",
+  signoff: "With all my prayers, admiration, and warmest wishes,",
+  signature: "Nebyu ❤️",
 };
 
 /** Chapter 5 — Our Story. Each becomes a card in the timeline. ✏️ */

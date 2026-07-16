@@ -104,7 +104,7 @@ export default function LoveLetter() {
                     className="font-body text-[0.98rem] leading-relaxed text-[#3a2c1c]"
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1 + i * 0.6, duration: 0.9 }}
+                    transition={{ delay: 0.9 + i * 0.32, duration: 0.9 }}
                   >
                     {para}
                   </motion.p>
@@ -115,15 +115,23 @@ export default function LoveLetter() {
                 className="mt-8 font-display text-lg italic text-burgundy"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1 + loveLetter.body.length * 0.6, duration: 0.9 }}
+                transition={{ delay: 0.9 + loveLetter.body.length * 0.32, duration: 0.9 }}
               >
                 {loveLetter.closing}
               </motion.p>
               <motion.p
-                className="mt-4 text-right font-script text-4xl text-burgundy"
+                className="mt-8 text-right font-body text-sm italic text-[#5a4632]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 + loveLetter.body.length * 0.32, duration: 0.9 }}
+              >
+                {loveLetter.signoff}
+              </motion.p>
+              <motion.p
+                className="mt-2 text-right font-script text-4xl text-burgundy"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 1.4 + loveLetter.body.length * 0.6, duration: 1 }}
+                transition={{ delay: 1.5 + loveLetter.body.length * 0.32, duration: 1 }}
               >
                 {loveLetter.signature}
               </motion.p>
