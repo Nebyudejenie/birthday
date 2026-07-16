@@ -212,7 +212,11 @@ export const finale = {
  * It starts only after "Begin Experience", fades in, and remembers its position.
  */
 export const soundtrack = {
-  src: "/song/Happy_Birthday_My_Love_song.mp3",
+  // Served straight from the GitHub repo (sends CORS + range headers so it
+  // streams and feeds the Web-Audio analyser). jsDelivr can't be used here —
+  // it rejects files over 20 MB and this song is ~25 MB. To self-host instead,
+  // drop the file at public/song/… and set src to "/song/Happy_Birthday_My_Love_song.mp3".
+  src: "https://raw.githubusercontent.com/Nebyudejenie/birthday/main/song/Happy_Birthday_My_Love_song.mp3",
   title: "Happy Birthday, My Love",
   targetVolume: 0.35, // fade to 35%
   fadeSeconds: 5, // 0% → 35% over 5s

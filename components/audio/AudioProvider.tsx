@@ -108,8 +108,10 @@ export default function AudioProvider({ children }: { children: ReactNode }) {
     const start = a.volume;
     const t0 = performance.now();
     const step = (now: number) => {
-      const k = Math.min(1, (now - t0) / ms);
-      a.volume = start + (target - start) * k;
+      // clamp k to [0,1]: the first rAF timestamp can precede t0, which would
+      // otherwise drive volume negative and throw (leaving playback silent).
+      const k = Math.max(0, Math.min(1, (now - t0) / ms));
+      a.volume = Math.max(0, Math.min(1, start + (target - start) * k));
       if (k < 1) fadeRef.current = requestAnimationFrame(step);
     };
     fadeRef.current = requestAnimationFrame(step);
@@ -223,10 +225,13 @@ export default function AudioProvider({ children }: { children: ReactNode }) {
     <Ctx.Provider
       value={{ started, playing, muted, volume, currentTime, duration, begin, toggle, setVolume, toggleMute, seek }}
     >
-      {/* the one and only audio element — metadata only, streamed on demand */}
+      {/* the one and only audio element — metadata only, streamed on demand.
+          crossOrigin lets the CDN file feed the Web-Audio analyser without
+          being silenced as a tainted cross-origin source. */}
       <audio
         ref={audioRef}
         src={soundtrack.src}
+        crossOrigin="anonymous"
         preload="metadata"
         loop
         onLoadedMetadata={(e) => setDur(e.currentTarget.duration || 0)}
