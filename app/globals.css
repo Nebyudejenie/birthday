@@ -114,6 +114,22 @@ body {
   }
 }
 
+/* Butterfly wing flap — top-down view, symmetric */
+@keyframes wing-flap {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(0.5);
+  }
+}
+.bf-wings {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: wing-flap var(--flap, 0.32s) ease-in-out infinite;
+}
+
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   *,
