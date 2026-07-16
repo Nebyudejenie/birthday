@@ -41,11 +41,26 @@ the reasons, the prayer, the gift messages.
 | Change the letter | edit `loveLetter` |
 | Change the memories | edit `timeline` |
 | Add reasons / compliments | add to `reasons` / `compliments` |
-| Add background music | drop an `.mp3` in `public/audio/` and set `music.src` |
 | Add photos | drop images in `public/photos/` and list them in `photos` |
 | Lock it with a passcode | set `passcode` (e.g. `"ebony"`) — shows a gentle gate |
 
-> Music note: no copyrighted audio is bundled. Add a track you have the right to use.
+### 🎵 The soundtrack (one song, ~35 min)
+
+Drop the birthday song at exactly:
+
+```
+public/song/Happy_Birthday_My_Love_song.mp3
+```
+
+That's the only music the site uses (path/volume/fade live in `content/site.ts → soundtrack`).
+It never autoplays — it starts after the visitor clicks **“Begin Experience ❤️”**, fades in
+0 → 35 % over 5 seconds, streams (`preload="metadata"`), and **remembers its position** across
+reloads. The floating glass **music dock** shows play/pause, volume, mute, a seek bar, the live
+time, and the current cinematic **chapter** (the song time maps to Opening → Celebration →
+Our Story → Love Letter → Faith → Birthday → Final). The stars, petals and a soft golden bloom
+**breathe subtly with the music** via a Web-Audio analyser.
+
+> No audio is bundled — add a file you have the right to use.
 
 ---
 

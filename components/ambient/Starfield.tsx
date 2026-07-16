@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "@/lib/hooks";
+import { audioSignals } from "@/lib/audioStore";
 
 type Star = { x: number; y: number; r: number; base: number; tw: number; ph: number };
 type Shoot = { x: number; y: number; vx: number; vy: number; life: number; len: number };
@@ -56,10 +57,11 @@ export default function Starfield() {
       last = now;
       ctx.clearRect(0, 0, w, h);
 
-      // twinkling stars
+      // twinkling stars — brighten gently with the music
+      const boost = audioSignals.intensity * 0.35;
       for (const s of stars) {
         s.ph += (s.tw * dt) / 1000;
-        const a = s.base + Math.sin(s.ph) * 0.3;
+        const a = s.base + Math.sin(s.ph) * (0.3 + boost) + boost * 0.4;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255, 244, 214, ${Math.max(0, a)})`;

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "@/lib/hooks";
+import { audioSignals } from "@/lib/audioStore";
 
 type Petal = {
   x: number;
@@ -79,7 +80,7 @@ export default function Petals() {
       ctx.save();
       ctx.translate(p.x + swayX, p.y);
       ctx.rotate(p.rot);
-      ctx.globalAlpha = p.alpha;
+      ctx.globalAlpha = p.alpha * (0.85 + audioSignals.intensity * 0.5);
       const grad = ctx.createLinearGradient(0, -p.size, 0, p.size);
       grad.addColorStop(0, `rgba(${r},${g},${b},0.95)`);
       grad.addColorStop(1, `rgba(${r},${g},${b},0.35)`);

@@ -4,6 +4,7 @@ import Aurora from "./Aurora";
 import Starfield from "./Starfield";
 import Petals from "./Petals";
 import Butterflies from "./Butterflies";
+import AudioGlow from "./AudioGlow";
 import CursorGlow from "./CursorGlow";
 import SmoothScroll from "./SmoothScroll";
 
@@ -14,6 +15,7 @@ export default function Atmosphere() {
       <SmoothScroll />
       <Aurora />
       <Starfield />
+      <AudioGlow />
       <Petals />
       <Butterflies />
       <CursorGlow />

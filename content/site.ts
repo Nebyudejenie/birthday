@@ -207,13 +207,28 @@ export const finale = {
 };
 
 /**
- * Optional background music.
- * Drop an .mp3 into /public/audio and set the filename here.
- * Leave "" to hide the player. (No copyrighted tracks are bundled.)
+ * The single background song — the emotional soundtrack of the whole
+ * experience (~35 min). Drop the file at:  public/song/Happy_Birthday_My_Love_song.mp3
+ * It starts only after "Begin Experience", fades in, and remembers its position.
  */
-export const music = {
-  src: "", // ✏️ e.g. "/audio/soft-piano.mp3"
-  title: "Soft Piano",
+export const soundtrack = {
+  src: "/song/Happy_Birthday_My_Love_song.mp3",
+  title: "Happy Birthday, My Love",
+  targetVolume: 0.35, // fade to 35%
+  fadeSeconds: 5, // 0% → 35% over 5s
+  /**
+   * Song-time chapters (in seconds) that guide the emotional pacing.
+   * The player surfaces the current chapter + mood as the song plays.
+   */
+  chapters: [
+    { at: 0, label: "Opening Universe", mood: "Wonder", anchor: "hero" },
+    { at: 180, label: "Her Celebration", mood: "Admiration", anchor: "hero" },
+    { at: 480, label: "Our Story", mood: "Nostalgia", anchor: "story" },
+    { at: 900, label: "Love Letter", mood: "Emotional", anchor: "letter" },
+    { at: 1200, label: "Faith & Blessings", mood: "Peace", anchor: "prayer" },
+    { at: 1500, label: "Birthday Celebration", mood: "Joy", anchor: "cake" },
+    { at: 1800, label: "Final Chapter", mood: "Hope & Love", anchor: "finale" },
+  ] as { at: number; label: string; mood: string; anchor: string }[],
 };
 
 /**
