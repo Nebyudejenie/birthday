@@ -24,6 +24,18 @@ yarn-error.log*
 .env*.local
 .env
 
+# deployment runtime artifacts (keep the folders, ignore contents)
+/logs/*
+!/logs/.gitkeep
+/backup/*
+!/backup/.gitkeep
+/ssl/*
+!/ssl/.gitkeep
+
+# cloudflare tunnel secrets
+cloudflared/*.json
+cloudflared/config.yml
+
 # vercel / typescript
 .vercel
 *.tsbuildinfo

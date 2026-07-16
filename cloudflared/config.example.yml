@@ -1,0 +1,23 @@
+# ─────────────────────────────────────────────────────────────
+#  Cloudflare Tunnel — ingress configuration (locally-managed tunnel)
+#  Copy to  cloudflared/config.yml  and replace <TUNNEL_ID>.
+#  The credentials JSON is created by `cloudflared tunnel create` and must
+#  live next to this file. It is git-ignored — never commit it.
+# ─────────────────────────────────────────────────────────────
+
+tunnel: <TUNNEL_ID>
+credentials-file: /etc/cloudflared/<TUNNEL_ID>.json
+
+# Sensible defaults
+originRequest:
+  connectTimeout: 30s
+  noTLSVerify: false
+
+# Route the domain to the internal nginx service (Docker network name "nginx").
+ingress:
+  - hostname: ebony-mylove.online
+    service: http://nginx:80
+  - hostname: www.ebony-mylove.online
+    service: http://nginx:80
+  # Everything else → 404
+  - service: http_status:404

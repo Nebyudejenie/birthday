@@ -1,0 +1,9 @@
+# Local-testing override — publishes nginx on http://localhost:8080
+# Usage:  docker compose -f docker-compose.yml -f docker-compose.local.yml up -d
+# Never use in production (the tunnel is the only public ingress there).
+name: ebony
+
+services:
+  nginx:
+    ports:
+      - "8080:80"

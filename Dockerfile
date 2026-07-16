@@ -5,8 +5,9 @@
 # ─────────────────────────────────────────────
 FROM node:22-alpine AS deps
 WORKDIR /app
-# libc compat for some native deps
-RUN apk add --no-cache libc6-compat
+# libc compat helps some native deps; non-fatal since this app is pure-JS and
+# it keeps the build resilient to transient Alpine mirror hiccups.
+RUN apk add --no-cache libc6-compat || true
 COPY package.json package-lock.json* ./
 RUN npm ci || npm install
 
@@ -42,8 +43,8 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 USER nextjs
 EXPOSE 3000
 
-# Container-native healthcheck hitting the app
+# Container-native healthcheck hitting the app's readiness endpoint
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
-  CMD node -e "fetch('http://127.0.0.1:3000').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+  CMD node -e "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
 
 CMD ["node", "server.js"]

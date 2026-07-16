@@ -1,0 +1,4 @@
+# Never commit tunnel secrets or the live config
+*.json
+config.yml
+!config.example.yml
