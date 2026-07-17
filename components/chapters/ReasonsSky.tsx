@@ -60,7 +60,9 @@ export default function ReasonsSky() {
             <button
               key={s.i}
               onClick={() => setActive(s.i)}
-              className="group absolute -translate-x-1/2 -translate-y-1/2"
+              /* the star stays delicate, but the tap area is a full 24px
+                 (WCAG 2.2 target size) centred on it */
+              className="group absolute grid h-7 w-7 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
               style={{ left: `${s.x}%`, top: `${s.y}%` }}
               aria-label={`Reason ${s.i + 1}`}
             >

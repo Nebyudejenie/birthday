@@ -65,10 +65,12 @@ export default function HerPortrait() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* rose-gold bloom continuing her hair light */}
+          {/* Rose-gold bloom continuing her hair light. The bleed is tightened on
+              narrow screens: at 320px a 40px bleed pushed the box past the
+              viewport and created real horizontal scroll. */}
           <div
             aria-hidden
-            className="pointer-events-none absolute -inset-10 -z-10 rounded-full blur-3xl"
+            className="pointer-events-none absolute -inset-4 -z-10 rounded-full blur-3xl sm:-inset-10"
             style={{
               background:
                 "radial-gradient(ellipse at 60% 35%, rgba(212,175,55,0.35), rgba(183,110,121,0.22) 45%, transparent 70%)",

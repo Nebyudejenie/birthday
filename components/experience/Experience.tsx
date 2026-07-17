@@ -38,8 +38,10 @@ export default function Experience() {
       <Atmosphere />
       <MusicDock />
 
+      {/* main's bottom padding clears the fixed music dock, so the closing line
+          is never trapped underneath it at the end of the page */}
       {revealed && (
-        <main className="relative z-[2]">
+        <main className="relative z-[2] pb-32 sm:pb-28">
           <Hero />
           <HerPortrait />
           <LoveLetter />

@@ -39,7 +39,10 @@ export const viewport: Viewport = {
   themeColor: "#050505",
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
+  // No maximumScale/userScalable lock: pinch-zoom must stay available (WCAG 1.4.4).
+  // viewportFit lets the layout reach under the notch while safe-area insets
+  // keep the controls clear of it.
+  viewportFit: "cover",
 };
 
 export default function RootLayout({

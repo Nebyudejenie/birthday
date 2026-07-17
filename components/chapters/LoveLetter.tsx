@@ -19,7 +19,7 @@ export default function LoveLetter() {
             <motion.button
               key="envelope"
               onClick={() => setOpen(true)}
-              className="group relative h-56 w-80 cursor-pointer sm:h-64 sm:w-[26rem]"
+              className="group relative h-56 w-full max-w-[20rem] cursor-pointer sm:h-64 sm:max-w-[26rem]"
               aria-label="Open the letter"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

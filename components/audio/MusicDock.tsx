@@ -51,15 +51,21 @@ export default function MusicDock() {
   if (!started) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
+    /* Positioning lives on this plain wrapper: Framer writes an inline
+       `transform` for the entrance, which would otherwise override Tailwind's
+       -translate-x-1/2 and push the dock off the right edge on phones. */
+    <div
       className="fixed bottom-4 left-1/2 z-[70] w-[min(360px,92vw)] -translate-x-1/2 sm:left-auto sm:right-5 sm:translate-x-0"
+      style={{ bottom: "max(1rem, env(safe-area-inset-bottom))" }}
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
     >
-      <div className="glass rounded-2xl px-3.5 py-3 shadow-glow-soft">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="glass rounded-2xl px-3.5 py-3 shadow-glow-soft"
+      >
         <div className="flex items-center gap-3">
           {/* play / pause */}
           <button
@@ -102,10 +108,18 @@ export default function MusicDock() {
             setDragging(true);
             seekFromEvent(e.clientX);
           }}
-          className="group relative mt-3 h-3 cursor-pointer"
+          /* 24px tall hit area (WCAG 2.2 target size) — the visible rail stays 3px */
+          className="group relative mt-1.5 h-6 cursor-pointer"
           role="slider"
+          tabIndex={0}
           aria-label="Seek"
-          aria-valuenow={Math.round(pct)}
+          aria-valuemin={0}
+          aria-valuemax={Math.round(dur)}
+          aria-valuenow={Math.round(currentTime)}
+          onKeyDown={(e) => {
+            if (e.key === "ArrowRight") seek(Math.min(dur, currentTime + 15));
+            if (e.key === "ArrowLeft") seek(Math.max(0, currentTime - 15));
+          }}
         >
           <div className="absolute top-1/2 h-[3px] w-full -translate-y-1/2 rounded-full bg-cream/15" />
           <div
@@ -137,13 +151,13 @@ export default function MusicDock() {
                   value={muted ? 0 : volume}
                   onChange={(e) => setVolume(parseFloat(e.target.value))}
                   aria-label="Volume"
-                  className="h-1 w-full cursor-pointer appearance-none rounded-full bg-cream/15 accent-gold"
+                  className="h-6 w-full cursor-pointer appearance-none rounded-full bg-transparent accent-gold"
                 />
               </div>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

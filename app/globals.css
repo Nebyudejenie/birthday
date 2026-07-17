@@ -32,6 +32,19 @@ body {
   color: #fff8f0;
 }
 
+/* Visible keyboard focus everywhere (mouse users never see it) */
+:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Respect the notch / home indicator on iOS */
+body {
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
