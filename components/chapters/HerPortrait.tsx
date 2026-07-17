@@ -49,8 +49,10 @@ export default function HerPortrait() {
   return (
     <section id="portrait" className="chapter">
       <Reveal className="mb-10 text-center">
-        <p className="font-script text-3xl text-rose sm:text-4xl">{portrait.script}</p>
-        <h2 className="font-display text-4xl font-semibold text-gilded sm:text-5xl">
+        {portrait.script && (
+          <p className="font-script text-3xl text-rose sm:text-4xl">{portrait.script}</p>
+        )}
+        <h2 className="mx-auto max-w-3xl text-balance font-display text-3xl font-semibold leading-tight text-gilded sm:text-4xl md:text-5xl">
           {portrait.title}
         </h2>
         <div className="hairline mx-auto mt-6 w-40" />
@@ -156,7 +158,7 @@ export default function HerPortrait() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="mt-8 max-w-sm text-center font-display text-lg italic text-cream/70"
+          className="mt-8 max-w-xl text-balance text-center font-display text-base italic leading-relaxed text-cream/75 sm:text-lg"
         >
           {portrait.caption}
         </motion.p>

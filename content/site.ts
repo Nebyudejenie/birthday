@@ -250,9 +250,11 @@ export const portrait = {
    * upward — this keeps her smile centred and never crops it awkwardly.
    */
   objectPosition: "50% 30%",
-  script: "and then, her",
-  title: "Her Entrance",
-  caption: "The day the world got a little brighter.",
+  /** Optional small script line above the title. Leave "" to hide it. */
+  script: "",
+  title: "A Beautiful Blessing Entered the World",
+  caption:
+    "God created someone wonderfully unique—a woman of grace, kindness, strength, and love—and today we celebrate the gift of her life.",
 };
 
 /**
