@@ -13,17 +13,23 @@ fully Dockerized for one-command deployment.
 ## ✨ The experience
 
 A guided, scrolling story with always-on ambient layers (twinkling starfield, drifting rose
-petals, aurora, a glowing moon, cursor light):
+petals, Blue Morpho & Glasswing butterflies, aurora, a glowing moon, cursor light) and one
+~35-minute soundtrack that starts on **“Begin Experience ❤️”**, fades in, remembers its
+position, and subtly drives the glow of the stars and petals:
 
-1. **Cinematic loader** → **Hero** — staged reveal of *Happy Birthday · Ebony · My Beautiful Queen*
-2. **Chapter I — Open My Heart** — a wax-sealed envelope that opens into a handwritten letter
-3. **Chapter II — Across the Miles** — a golden beam connects your two cities, with live clocks
-4. **Chapter III — Our Story** — an animated memory timeline
-5. **Chapter IV — Why You're Amazing** — a sky of clickable "reason" stars + a compliment generator
-6. **Chapter V — A Prayer For You** — candles, a prayer, and rotating scripture
-7. **Chapter VI — Your Birthday Cake** — light the candles, make a wish, blow → confetti
-8. **Chapter VII — The Surprise Room** — gift boxes that unwrap little messages
-9. **Finale** — live countdown, final letter, and a fireworks sky
+1. **Begin Experience** — black screen → golden particles → a growing heart → music fades in
+2. **Hero** — staged reveal of *Happy Birthday · Ebony · My Beautiful Queen*
+3. **Her Entrance** — her portrait in a gold gallery frame with a rose-gold bloom
+4. **Chapter I — Open My Heart** — a wax-sealed envelope that opens into a handwritten letter
+5. **Chapter II — Across the Miles** — a golden beam connects your two cities, with live clocks
+6. **Chapter III — Our Story** — an animated memory timeline
+7. **Chapter IV — Why You're Amazing** — a sky of clickable "reason" stars + a compliment generator
+8. **Chapter V — A Prayer For You** — candles, a prayer, and rotating scripture
+9. **Chapter VI — Your Birthday Cake** — light the candles, make a wish, blow → confetti
+10. **Chapter VII — The Surprise Room** — gift boxes that unwrap little messages
+11. **Finale** — live countdown, final letter, and a fireworks sky
+
+A floating glass **music dock** shows the current cinematic chapter, time, seek bar and volume.
 
 Accessible (respects `prefers-reduced-motion`), mobile-first, and kept out of search engines
 (it's private).

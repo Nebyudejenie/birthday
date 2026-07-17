@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { gifts } from "@/content/site";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Reveal from "@/components/ui/Reveal";
@@ -16,6 +16,16 @@ export default function GiftBoxes() {
     setUnwrapped((s) => new Set(s).add(i));
     heartBurst({ x: 0.5, y: 0.5 });
   };
+
+  // dialog behaviour: Escape closes the surprise
+  useEffect(() => {
+    if (open === null) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   return (
     <section id="gifts" className="chapter">
@@ -61,6 +71,9 @@ export default function GiftBoxes() {
             onClick={() => setOpen(null)}
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-label={gifts[open].label}
               className="glass relative w-full max-w-md rounded-3xl p-10 text-center"
               initial={{ scale: 0.85, y: 30, opacity: 0 }}
               animate={{ scale: 1, y: 0, opacity: 1 }}
@@ -68,13 +81,14 @@ export default function GiftBoxes() {
               transition={{ type: "spring", stiffness: 260, damping: 22 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="mb-4 text-5xl">{gifts[open].icon}</div>
+              <div aria-hidden className="mb-4 text-5xl">{gifts[open].icon}</div>
               <p className="eyebrow mb-3">{gifts[open].label}</p>
               <h3 className="font-display text-2xl text-gilded">{gifts[open].title}</h3>
               <p className="mt-4 font-body text-base leading-relaxed text-cream/75">
                 {gifts[open].body}
               </p>
               <button
+                autoFocus
                 onClick={() => setOpen(null)}
                 className="mt-8 font-body text-xs uppercase tracking-[0.3em] text-gold/70 transition hover:text-gold"
               >

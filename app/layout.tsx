@@ -50,7 +50,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${playfair.variable} ${poppins.variable} ${greatVibes.variable}`}>
-      <body className="font-body antialiased">{children}</body>
+      <body className="font-body antialiased">
+        {/* Warm up the soundtrack host during the intro so the music starts
+            without a DNS+TLS pause on the first "Begin Experience" click. */}
+        <link rel="preconnect" href="https://raw.githubusercontent.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://raw.githubusercontent.com" />
+        {children}
+      </body>
     </html>
   );
 }

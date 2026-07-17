@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { site, distanceLines } from "@/content/site";
 import SectionTitle from "@/components/ui/SectionTitle";
 import Reveal from "@/components/ui/Reveal";
+import { usePrefersReducedMotion } from "@/lib/hooks";
 
 /** Live clock for a given IANA timezone. */
 function useClock(tz: string) {
@@ -52,6 +53,9 @@ export default function DistanceGlobe() {
   const herTime = useClock("America/New_York"); // Cleveland
   const youTime = useClock("Africa/Addis_Ababa"); // Addis Ababa
   const [lineIdx, setLineIdx] = useState(0);
+  // SMIL <animate> tags are reached by neither the CSS reduced-motion
+  // kill-switch nor MotionConfig, so we gate them ourselves.
+  const reduced = usePrefersReducedMotion();
 
   useEffect(() => {
     const id = setInterval(
@@ -129,27 +133,38 @@ export default function DistanceGlobe() {
               strokeLinecap="round"
               strokeDasharray="6 10"
             >
-              <animate attributeName="stroke-dashoffset" from="0" to="-160" dur="3s" repeatCount="indefinite" />
+              {!reduced && (
+                <animate attributeName="stroke-dashoffset" from="0" to="-160" dur="3s" repeatCount="indefinite" />
+              )}
             </path>
 
             {/* markers */}
             {/* Addis */}
             <circle cx="250" cy="300" r="26" fill="url(#markerGlow)" />
             <circle cx="250" cy="300" r="5" fill="#F4D77E">
-              <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" />
+              {!reduced && <animate attributeName="r" values="4;6;4" dur="2s" repeatCount="indefinite" />}
             </circle>
             {/* Cleveland */}
             <circle cx="560" cy="200" r="26" fill="url(#markerGlow)" />
             <circle cx="560" cy="200" r="5" fill="#F4D77E">
-              <animate attributeName="r" values="4;6;4" dur="2s" begin="1s" repeatCount="indefinite" />
+              {!reduced && <animate attributeName="r" values="4;6;4" dur="2s" begin="1s" repeatCount="indefinite" />}
             </circle>
 
-            {/* traveling heart */}
-            <text fontSize="20" fill="#F4D77E" textAnchor="middle" dominantBaseline="middle">
+            {/* traveling heart — rests at the top of the arc when motion is reduced */}
+            <text
+              fontSize="20"
+              fill="#F4D77E"
+              textAnchor="middle"
+              dominantBaseline="middle"
+              x={reduced ? 400 : undefined}
+              y={reduced ? 172 : undefined}
+            >
               ❤
-              <animateMotion dur="4s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
-                <mpath href="#loveArc" />
-              </animateMotion>
+              {!reduced && (
+                <animateMotion dur="4s" repeatCount="indefinite" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="linear">
+                  <mpath href="#loveArc" />
+                </animateMotion>
+              )}
             </text>
           </svg>
 

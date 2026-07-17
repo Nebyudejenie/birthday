@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MotionConfig } from "framer-motion";
 import { site } from "@/content/site";
 import Atmosphere from "@/components/ambient/Atmosphere";
 import AudioProvider from "@/components/audio/AudioProvider";
@@ -31,29 +32,34 @@ export default function Experience() {
 
   return (
     <AudioProvider>
-      {site.passcode && !unlocked ? <Gate onUnlock={() => setUnlocked(true)} /> : null}
-      {unlocked && !revealed ? <Intro onReveal={() => setRevealed(true)} /> : null}
+      {/* reducedMotion="user": Framer animations are JS-driven, so the CSS
+          prefers-reduced-motion kill-switch never reaches them. This disables
+          transform/layout motion for those users while keeping gentle fades. */}
+      <MotionConfig reducedMotion="user">
+        {site.passcode && !unlocked ? <Gate onUnlock={() => setUnlocked(true)} /> : null}
+        {unlocked && !revealed ? <Intro onReveal={() => setRevealed(true)} /> : null}
 
-      <ScrollProgress />
-      <Atmosphere />
-      <MusicDock />
+        <ScrollProgress />
+        <Atmosphere />
+        <MusicDock />
 
-      {/* main's bottom padding clears the fixed music dock, so the closing line
-          is never trapped underneath it at the end of the page */}
-      {revealed && (
-        <main className="relative z-[2] pb-32 sm:pb-28">
-          <Hero />
-          <HerPortrait />
-          <LoveLetter />
-          <DistanceGlobe />
-          <Timeline />
-          <ReasonsSky />
-          <Prayer />
-          <Cake />
-          <GiftBoxes />
-          <Finale />
-        </main>
-      )}
+        {/* main's bottom padding clears the fixed music dock, so the closing line
+            is never trapped underneath it at the end of the page */}
+        {revealed && (
+          <main className="relative z-[2] pb-32 sm:pb-28">
+            <Hero />
+            <HerPortrait />
+            <LoveLetter />
+            <DistanceGlobe />
+            <Timeline />
+            <ReasonsSky />
+            <Prayer />
+            <Cake />
+            <GiftBoxes />
+            <Finale />
+          </main>
+        )}
+      </MotionConfig>
     </AudioProvider>
   );
 }

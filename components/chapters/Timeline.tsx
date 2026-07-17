@@ -39,7 +39,7 @@ export default function Timeline() {
                   className="glass ml-10 w-full rounded-2xl p-6 sm:ml-0 sm:w-[46%]"
                 >
                   <div className="mb-2 flex items-center gap-3">
-                    <span className="text-2xl">{item.emoji}</span>
+                    <span aria-hidden className="text-2xl">{item.emoji}</span>
                     <span className="eyebrow !tracking-[0.3em]">{item.year}</span>
                   </div>
                   <h3 className="font-display text-2xl text-cream">{item.title}</h3>

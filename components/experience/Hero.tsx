@@ -102,9 +102,12 @@ export default function Hero() {
         </p>
       </motion.div>
 
-      {/* scroll cue */}
+      {/* scroll cue — hidden on phones, where the music dock occupies the same
+          bottom-centre spot and would sit on top of it. Centring uses Framer's
+          x (not a Tailwind translate class) so the y animation can't override it. */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 hidden sm:block"
+        style={{ x: "-50%" }}
         initial={{ opacity: 0 }}
         animate={{ opacity: [0, 1, 0], y: [0, 8, 0] }}
         transition={{ delay: 4, duration: 2.4, repeat: Infinity }}
