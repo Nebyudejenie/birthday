@@ -236,6 +236,26 @@ export const soundtrack = {
 };
 
 /**
+ * ── HER ENTRANCE ──
+ * The one portrait that anchors the whole experience.
+ * Drop the file at:  public/photos/ebony-portrait.jpg
+ * If the file isn't there yet, the section quietly hides itself — nothing breaks.
+ */
+export const portrait = {
+  src: "/photos/ebony-portrait.jpg", // ✏️ set to "" to hide the section entirely
+  /** Alt text matters — this is how the moment reads to a screen reader. */
+  alt: "Ebony smiling radiantly, her copper locs catching a warm rim of light against a terracotta backdrop.",
+  /**
+   * Focal point for the crop. Her face sits in the upper third, so we bias
+   * upward — this keeps her smile centred and never crops it awkwardly.
+   */
+  objectPosition: "50% 30%",
+  script: "and then, her",
+  title: "Her Entrance",
+  caption: "The day the world got a little brighter.",
+};
+
+/**
  * Photos for the gallery. Drop images in /public/photos and list them.
  * Leave empty to show elegant placeholders instead. ✏️
  */

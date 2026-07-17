@@ -10,6 +10,7 @@ import Gate from "./Gate";
 import ScrollProgress from "./ScrollProgress";
 
 import Hero from "./Hero";
+import HerPortrait from "@/components/chapters/HerPortrait";
 import LoveLetter from "@/components/chapters/LoveLetter";
 import DistanceGlobe from "@/components/chapters/DistanceGlobe";
 import Timeline from "@/components/chapters/Timeline";
@@ -40,6 +41,7 @@ export default function Experience() {
       {revealed && (
         <main className="relative z-[2]">
           <Hero />
+          <HerPortrait />
           <LoveLetter />
           <DistanceGlobe />
           <Timeline />
