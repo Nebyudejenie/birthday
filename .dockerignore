@@ -13,8 +13,10 @@ npm-debug.log
 .env.*
 !.env.example
 
-# deployment infra (not part of the app image)
-scripts
+# deployment infra (not part of the app image).
+# Ignore only the shell scripts — prepare-standalone.mjs is needed by the
+# `postbuild` step that runs during `npm run build` inside the image.
+scripts/*.sh
 nginx
 cloudflared
 logs
